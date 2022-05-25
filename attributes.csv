@@ -999,7 +999,6 @@ id, type, gender, skin tone, count, accessories
 997, Human, Female, Light, 2, Horned Rim Glasses / Straight Hair Dark
 998, Human, Male, Dark, 4, Stringy Hair / Buck Teeth / Horned Rim Glasses / Normal Beard
 999, Human, Male, Dark, 3, Normal Beard / Headband / Pipe
-id, type, gender, skin tone, count, accessories
 1000, Human, Female, Dark, 3, Dark Hair / Rosy Cheeks / Cigarette
 1001, Human, Male, Medium, 3, Luxurious Beard / Peak Spike / Nerd Glasses
 1002, Human, Male, Albino, 1, Mohawk Dark
@@ -2000,7 +1999,6 @@ id, type, gender, skin tone, count, accessories
 1997, Human, Male, Medium, 3, Cigarette / Frumpy Hair / Clown Nose
 1998, Human, Male, Dark, 3, Big Shades / Earring / Shaved Head
 1999, Human, Male, Dark, 2, Front Beard / Cowboy Hat
-id, type, gender, skin tone, count, accessories
 2000, Human, Female, Dark, 3, Big Shades / Tiara / Earring
 2001, Human, Female, Medium, 3, Stringy Hair / Purple Lipstick / Earring
 2002, Human, Male, Albino, 2, Messy Hair / Shadow Beard
@@ -3001,7 +2999,6 @@ id, type, gender, skin tone, count, accessories
 2997, Human, Female, Dark, 2, Clown Eyes Green / Clown Hair Green
 2998, Human, Male, Medium, 3, Shadow Beard / Fedora / Earring
 2999, Human, Male, Medium, 3, Stringy Hair / Front Beard Dark / Eye Patch
-id, type, gender, skin tone, count, accessories
 3000, Human, Male, Medium, 2, Frumpy Hair / Normal Beard
 3001, Human, Male, Dark, 2, Vampire Hair / Nerd Glasses
 3002, Human, Female, Dark, 2, Mohawk / Purple Eye Shadow
@@ -4002,7 +3999,6 @@ id, type, gender, skin tone, count, accessories
 3997, Human, Female, Dark, 3, Purple Lipstick / Mohawk Dark / Clown Eyes Blue
 3998, Human, Female, Albino, 2, Black Lipstick / Half Shaved
 3999, Human, Female, Dark, 5, Pipe / Big Shades / Straight Hair Blonde / Hot Lipstick / Earring
-id, type, gender, skin tone, count, accessories
 4000, Human, Male, Medium, 2, Bandana / Small Shades
 4001, Human, Male, Albino, 4, Stringy Hair / Cigarette / Front Beard Dark / Classic Shades
 4002, Human, Male, Light, 4, Bandana / Frown / Earring / Small Shades
@@ -5003,7 +4999,6 @@ id, type, gender, skin tone, count, accessories
 4997, Human, Female, Medium, 3, Purple Eye Shadow / Hot Lipstick / Straight Hair Dark
 4998, Human, Male, Dark, 4, Cigarette / Messy Hair / Frown / Chinstrap
 4999, Human, Male, Light, 4, Stringy Hair / Nerd Glasses / Goat / Mole
-id, type, gender, skin tone, count, accessories
 5000, Human, Female, Light, 3, Wild White Hair / Green Eye Shadow / Hot Lipstick
 5001, Human, Female, Dark, 2, Orange Side / Hot Lipstick
 5002, Human, Male, Dark, 4, Beanie / Earring / Nerd Glasses / Pipe
@@ -6004,7 +5999,6 @@ id, type, gender, skin tone, count, accessories
 5997, Human, Male, Dark, 3, Knitted Cap / Small Shades / Mole
 5998, Human, Female, Dark, 2, Mole / Wild Hair
 5999, Human, Male, Dark, 3, Mohawk / Small Shades / Mole
-id, type, gender, skin tone, count, accessories
 6000, Human, Male, Light, 2, Front Beard / Crazy Hair
 6001, Human, Male, Dark, 2, Bandana / Muttonchops
 6002, Human, Male, Light, 4, Chinstrap / Earring / Knitted Cap / 3D Glasses
@@ -7005,7 +6999,6 @@ id, type, gender, skin tone, count, accessories
 6997, Human, Female, Dark, 3, Regular Shades / Earring / Straight Hair Dark
 6998, Human, Female, Dark, 2, Clown Nose / Blonde Short
 6999, Human, Male, Dark, 3, Peak Spike / Earring / Regular Shades
-id, type, gender, skin tone, count, accessories
 7000, Human, Male, Dark, 2, Messy Hair / Classic Shades
 7001, Human, Male, Medium, 4, Police Cap / Chinstrap / Vape / Regular Shades
 7002, Human, Male, Dark, 3, Cigarette / Normal Beard Black / Knitted Cap
@@ -8006,7 +7999,6 @@ id, type, gender, skin tone, count, accessories
 7997, Human, Male, Light, 3, Bandana / Gold Chain / Normal Beard
 7998, Human, Male, Medium, 3, Cap Forward / Earring / Eye Patch
 7999, Human, Female, Light, 4, Blonde Short / Hot Lipstick / Earring / Nerd Glasses
-id, type, gender, skin tone, count, accessories
 8000, Human, Male, Albino, 5, Cigarette / Cap / Mustache / Rosy Cheeks / VR
 8001, Human, Female, Medium, 3, Gold Chain / Mohawk / Regular Shades
 8002, Human, Male, Dark, 3, Shadow Beard / Wild Hair / Mole
@@ -9007,7 +8999,6 @@ id, type, gender, skin tone, count, accessories
 8997, Human, Female, Dark, 3, Blue Eye Shadow / Hot Lipstick / Blonde Bob
 8998, Human, Male, Light, 3, Clown Nose / Frown / Purple Hair
 8999, Human, Female, Light, 4, Clown Eyes Green / Blonde Short / Purple Lipstick / Earring
-id, type, gender, skin tone, count, accessories
 9000, Human, Female, Dark, 3, Blonde Short / Hot Lipstick / Cigarette
 9001, Human, Female, Dark, 3, Clown Nose / Bandana / Nerd Glasses
 9002, Human, Male, Medium, 3, Normal Beard Black / Classic Shades / Mohawk Dark
