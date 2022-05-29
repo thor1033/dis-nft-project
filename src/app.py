@@ -1,4 +1,5 @@
 from flask import Flask, render_template, redirect, url_for
+import pandas as pd
 
 app = Flask(__name__ , static_url_path='/static')
 
