@@ -6,5 +6,15 @@ app = Flask(__name__ , static_url_path='/static')
 def home():
     return render_template("index.html")
 
+@app.route("/punk/<punkid>")
+def punkpage(punkid):
+
+    """
+    Instead of PunkID we would have our database content
+    for 1 cryptopunk instead.
+    """
+
+    return render_template("cryptopunk.html", content=punkid)
+
 if __name__ == "__main__":
     app.run()

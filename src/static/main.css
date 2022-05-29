@@ -1,5 +1,5 @@
 body {
-  background: #fbf1c7;
+  background: #133e7c;
   margin-top: 50px;
   margin-left: 100px;
   font-family: 'Press Start 2P', sans-serif;
@@ -7,27 +7,35 @@ body {
 
 p {
   font-size: 1.2em;
-  color: #282828;
+  color: #ea00d9;
   }
 
 h1 {
   font-size: 2.5em;
-  color: #282828;
+  color: #ea00d9;
   text-align: center;
   }
 h4 {
     text-align: center;
-    color: #ebdbb2;
+    color: #ea00d9;
   }
 p.card-text {
     font-size: 0.8em;
-    color: #cc241d
+    color: #0abdc6;
   }
 
 .image {
   height: 300px;
   width: 300px;  
   image-rendering: pixelated;
+}
+.imagebig {
+  height: 400px;
+  width: 400px;  
+  image-rendering: pixelated;
+}
+.imgdiv {
+  text-align: center;
 }
 
 .cards {
@@ -39,7 +47,7 @@ p.card-text {
 
 .card {
   /* Add shadows to create the "card" effect */
-  border: 4px solid #b16286;
+  border: 4px solid #ea00d9;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   width: 300px;
@@ -49,11 +57,12 @@ p.card-text {
 /* On mouse-over, add a deeper shadow */
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  border: 4px solid #fcec0c;
 }
 
 /* Add some padding inside the card container */
 .container {
-  background-color: #282828;
+  background-color: #091833;
   padding: 2px 16px;
   height: 146px;
 }
