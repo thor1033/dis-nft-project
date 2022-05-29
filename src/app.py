@@ -3,6 +3,10 @@ import pandas as pd
 
 app = Flask(__name__ , static_url_path='/static')
 
+data = pd.read_csv("attributes.csv", dtype=str)
+
+print(list(data[data.id == '0009'].values)[0])
+
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -15,7 +19,9 @@ def punkpage(punkid):
     for 1 cryptopunk instead.
     """
 
-    return render_template("cryptopunk.html", content=punkid)
+    print(punkid)
+    ct = list(data[data.id == punkid].values)[0]
+    return render_template("cryptopunk.html", content=ct)
 
 if __name__ == "__main__":
     app.run()

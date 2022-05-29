@@ -7,9 +7,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100&family=Press+Start+2P&display=swap" rel="stylesheet">
   </head>
   <body>
-    <h1>Punk {format({content}, '05d')}!</h1>
+    <h1>Punk nr. {{content[0]}}!</h1>
     <div class="imgdiv">
-      <img src="/static/images/000{{content}}.png" alt="Avatar" class="imagebig">
+      <img src="/static/images/{{content[0]}}.png" alt="Avatar" class="imagebig">
+    </div>
+    <div class="tablecontainer">
+      <div class="tableitem">
+        <h4>Attributes</h4>
+        <p class="card-text">Type: {{content[1]}}</p>
+        <p class="card-text">Gender: {{content[2]}}</p>
+        <p class="card-text">Skintone: {{content[3]}}</p>
+        <p class="card-text">Accesories: {{content[4]}}</p>
+      </div>
+      <div class="tableitem">
+        <h4>Price history</h4>
+      </div>
+      <div class="tableitem">
+        <h4>Buy/sell</h4>
+      </div>
     </div>
   </body>
 </html>

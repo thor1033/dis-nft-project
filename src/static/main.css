@@ -2,28 +2,40 @@ body {
   background: #133e7c;
   margin-top: 50px;
   margin-left: 100px;
+  margin-right: 100px;
   font-family: 'Press Start 2P', sans-serif;
-  }
+}
 
 p {
   font-size: 1.2em;
   color: #ea00d9;
-  }
+}
 
 h1 {
   font-size: 2.5em;
   color: #ea00d9;
   text-align: center;
-  }
+}
 h4 {
     text-align: center;
     color: #ea00d9;
-  }
+}
 p.card-text {
     font-size: 0.8em;
     color: #0abdc6;
-  }
+}
 
+.tablecontainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: auto;
+  grid-gap: 4rem;
+  padding-top: 1rem;
+}
+.tableitem {
+  border: 4px solid #fcec0c;
+  padding: 1rem;
+}
 .image {
   height: 300px;
   width: 300px;  
