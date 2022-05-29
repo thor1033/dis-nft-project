@@ -12,14 +12,18 @@
    
     <div class="cards">
       {%for i in range(0,10)%}
-      <div class="card">
-        <img src="/static/images/000{{i}}.png" alt="Avatar" class="image">
-        <div class="container">
-          <h4><b>Punk #000{{i}}</b></h4>
-          <p class="card-text">Blonde</p>
-          <p class="card-text">Green eyes</p>
+      <a href="/punk/000{{i}}">
+        <div class="card">
+          <img src="/static/images/{{content[i][0]}}.png" alt="Avatar" class="image">
+          <div class="container">
+            <h4><b>Punk nr. {{content[i][0]}}</b></h4>
+            <p class="card-text">Type: {{content[i][1]}}</p>
+            <p class="card-text">Gender: {{content[i][2]}}</p>
+            <p class="card-text">Skintone: {{content[i][3]}}</p>
+            <p class="card-text">Accesories: {{content[i][4]}}</p>
+          </div>
         </div>
-      </div>
+      </a>
       {%endfor%}
     </div>
   </body>

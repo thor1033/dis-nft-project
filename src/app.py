@@ -5,11 +5,11 @@ app = Flask(__name__ , static_url_path='/static')
 
 data = pd.read_csv("attributes.csv", dtype=str)
 
-print(list(data[data.id == '0009'].values)[0])
 
+print(data.values)
 @app.route("/")
 def home():
-    return render_template("index.html")
+    return render_template("index.html", content=data.values)
 
 @app.route("/punk/<punkid>")
 def punkpage(punkid):
