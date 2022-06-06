@@ -9,7 +9,8 @@
   <body>
     <h1>Crypto Punk database!</h1>
     <p>Find your favourite punk!</p>
-   
+    <input type="text" id="form" placeholder="Attribute"\>
+    <input type="submit" id="button" value="Search">
     <div class="cards">
       {%for i in range(0,10)%}
       <a href="/punk/000{{i}}">
