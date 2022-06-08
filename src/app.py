@@ -12,7 +12,9 @@ def home():
     if not session.get('logged_in'):
         return render_template('login.html')
     else:
-        return render_template("index.html", content=data.values)
+        punks = data.values[:100]
+        length = len(punks)
+        return render_template("index.html", content=punks, length=length)
 
 @app.route('/login', methods=['POST'])
 def do_admin_login():
