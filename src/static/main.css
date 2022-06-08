@@ -29,16 +29,20 @@ body {
   margin-right: 100px;
   font-family: 'Press Start 2P', sans-serif;
 }
+label {
+  font-size: 18px;
+  color: #ea00d9;
+}
 #form {
   width: 400px;
   font-family: 'Press Start 2P', sans-serif;
   padding: 10px;
-  margin-bottom: 10px;
   font-size: 18px;
   outline:none;
   background: linear-gradient(to left top, #000, #133e7c) fixed;
   border: 4px solid #ea00d9;
   color: rgba(255,255,255,0.8);
+  margin: 5px;
   transition: all 0.5s;
 }
 
@@ -53,10 +57,10 @@ body {
 #button {
   width: 125px;
   font-family: 'Press Start 2P', sans-serif;
-  padding: 10px;
-  margin-top: 10px;
+  padding: 11px;
   font-size: 15px;
   font-weight:bold;
+  margin: 5px;
   outline:none;
   background: linear-gradient(to left top, #000, #133e7c) fixed;
   border: 4px solid #ea00d9;
@@ -87,6 +91,19 @@ h4 {
 p.card-text {
     font-size: 0.6em;
     color: #0abdc6;
+}
+
+.queryform {
+  background-color: #091833;
+}
+.querybox{
+  margin: auto auto;
+  width: fit-content;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #091833;
 }
 
 .tablecontainer {

@@ -1,6 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, session, abort, request, flash
 import os
 import pandas as pd
+import random
 
 app = Flask(__name__ , static_url_path='/static')
 
@@ -14,7 +15,8 @@ def home():
     else:
         punks = data.values[:100]
         length = len(punks)
-        return render_template("index.html", content=punks, length=length)
+        randomNumber = random.choice([id[0] for id in data.values])
+        return render_template("index.html", content=punks, length=length, randomNumber = randomNumber)
 
 @app.route('/login', methods=['POST'])
 def do_admin_login():
