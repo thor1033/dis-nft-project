@@ -10,30 +10,15 @@
     />
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="{{ url_for('home') }}"
-              >🏠</a
-            >
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <audio loop autoplay>
+      <source src="../static/8bit.mp3" type="audio/mp3" />
+    </audio>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/punk/4444">RANDOM PUNK</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li style="float: right"><a href="/logout">Logout</a></li>
+    </ul>
     {% block content %} {% endblock %}
   </body>
 </html>

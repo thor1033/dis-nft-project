@@ -1,6 +1,30 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #091833;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: #0abdc6;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  color: #ea00d9;
+}
+
 body {
   background: #133e7c;
-  margin-top: 50px;
+  margin-top: 10px;
   margin-left: 100px;
   margin-right: 100px;
   font-family: 'Press Start 2P', sans-serif;

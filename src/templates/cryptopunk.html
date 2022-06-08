@@ -1,12 +1,5 @@
-<!doctype html>
-<html>
-  <head>
-    <link rel="stylesheet" href='/static/main.css' />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100&family=Press+Start+2P&display=swap" rel="stylesheet">
-  </head>
-  <body>
+{% extends "navbar.html" %}
+{% block content %}
     <h1>Punk nr. {{content[0]}}!</h1>
     <div class="imgdiv">
       <img src="/static/images/{{content[0]}}.png" alt="Avatar" class="imagebig">
@@ -27,5 +20,4 @@
         <h4>Buy/sell</h4>
       </div>
     </div>
-  </body>
-</html>
+{% endblock content %}
