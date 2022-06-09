@@ -1,4 +1,4 @@
-id,type,gender,skin tone,count,accessories
+id,type,gender,skin_tone,count,accessories
 0000,human,female,medium,3,green eye shadow/earring/blonde bob
 0001,human,male,dark,2,smile/mohawk
 0002,human,female,light,1,wild hair
