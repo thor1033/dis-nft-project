@@ -18,7 +18,7 @@ def home():
             input_type = request.form["radiotype"]
             input_skin = request.form["radioskin"]
 
-            input_count = request.form["accessCount"] or 0
+            input_count = request.form["accessCount"] or -1
             input_access = request.form["access"] or "NaN"
 
             return redirect(url_for("querypage", gender=input_gender, types=input_type, skin=input_skin, access=input_access, count=input_count))
@@ -42,12 +42,15 @@ def querypage(gender, types, skin, count, access):
 
     if access != "NaN":
         ct = ct[ct["accessories"].str.contains(access)]
+
     print(ct)
-    if count != 0:
+    if int(count) != -1:
         ct = ct[ct["count"] == count]
 
     ct = list(ct.values)[1:]
     length = len(ct)
+    print(count)
+    print(length)
     return render_template("cryptoquery.html", content=ct, length=length)
 
 
@@ -78,4 +81,4 @@ def punkpage(punkid):
 
 if __name__ == "__main__":
     app.secret_key = os.urandom(12)
-    app.run()
+    app.run(debug=True)
