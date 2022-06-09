@@ -48,7 +48,7 @@ def querypage(gender, types, skin, count, access):
         ct = ct[ct["type"] == types]
 
     if skin != "all":
-        ct = ct[ct["skin tone"] == skin]
+        ct = ct[ct["skin_tone"] == skin]
 
     if access != "NaN":
         ct = ct[ct["accessories"].str.contains(access)]
@@ -82,6 +82,10 @@ def createaccount():
         #######################
         return redirect(url_for("home"))
     return render_template("createaccount.html")
+
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
 
 @app.route("/logout")
 def logout():

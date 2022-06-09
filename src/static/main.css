@@ -150,6 +150,25 @@ p.card-text {
     color: #0abdc6;
 }
 
+.contact {
+  padding-left: 25rem;
+  padding-top: 15rem;
+}
+.contactUser {
+  padding-bottom: 10px;
+  height: 100px;
+}
+.contactText {
+  vertical-align: middle;
+  line-height: 100px; 
+}
+.image2 {
+  float: left;
+  height: 100px;
+  width: 100px;  
+  image-rendering: pixelated;
+}
+
 .queryform {
   background-color: #091833;
 }
