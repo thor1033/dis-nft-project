@@ -1,18 +1,107 @@
 from flask import Flask, render_template, redirect, url_for, session, abort, request, flash
+import requests
+from bs4 import BeautifulSoup
+import psycopg2
+from flask_bcrypt import Bcrypt
+from flask_login import LoginManager
 import os
+import glob
 import pandas as pd
 import random
 
-import requests
-from bs4 import BeautifulSoup
-
 app = Flask(__name__ , static_url_path='/static')
 
-data = pd.read_csv("attributes.csv", dtype=str)
+# set your own database name, user name and password
+db = "dbname='NFT' user='postgres' host='localhost' password='Kamal420'" #potentially wrong password
+conn = psycopg2.connect(db)
+cursor = conn.cursor()
+
+sql1 = ''' drop table if exists Attributes;\
+CREATE TABLE Attributes(id char(4),\
+type char(20),\
+gender char(20),\
+skin_tone char(30),\
+count int,\
+accessories char(10000),\
+CONSTRAINT nft_pk PRIMARY KEY (id));'''
+  
+
+sql2 = '''copy  Attributes(id,type,gender, skin_tone, count, accessories)\
+            from 'C:\\Users\Gamer\\OneDrive\\Skrivebord\\Databases and informationsystems\\dis-nft-project\\attributes.csv'\
+            delimiter ','\
+            CSV HEADER;'''
+
+sql3 = '''select * from Attributes;'''
+
+cursor.execute(sql1)
+cursor.execute(sql2)
+cursor.execute(sql3)
+
+### Create user enity
+
+sql1 = ''' drop table if exists users;\
+CREATE TABLE users( username char(20) NOT NULL,\
+    password char(20) NOT NULL,\
+    CONSTRAINT user_pk PRIMARY KEY (username));''' 
+
+cursor.execute(sql1)
+cursor.execute('''INSERT INTO users(username, password) VALUES ('admin', 'password')''')
+
+sqlfav = '''drop table if exists favorites;\
+create table favorites(id char(4), username char(20), constraint nuser primary key(id, username))'''
+
+cursor.execute(sqlfav)
+
+
+conn.commit()
+
+bcrypt = Bcrypt(app)
+
+#data = pd.read_csv("attributes.csv", dtype=str)
+
+
+@app.route("/createaccount", methods=['POST', 'GET'])
+def createaccount():
+    cur = conn.cursor()
+    if request.method == 'POST':
+        ######GEM ACCOUNT###########
+        new_username = request.form['username']
+        new_password = request.form['password']
+        print(new_username)
+        cur.execute(f'''select * from users where username = '{new_username}' ''')
+        unique = cur.fetchall()
+
+        #cur.execute(f'''INSERT INTO users(username, password) VALUES ('{new_username}', '{new_password}')''')
+        flash('Account created!')
+        if  len(unique) == 0:
+            print("vi er her")
+            cur.execute(f'''INSERT INTO users(username, password) VALUES ('{new_username}', '{new_password}')''')
+            flash('Account created!')
+            conn.commit()
+
+            return redirect(url_for("home"))
+        else: 
+            flash('Username already exists!')
+
+
+    return render_template("createaccount.html")
+
+
 
 
 @app.route("/", methods=["POST", "GET"])
 def home():
+    cur = conn.cursor()
+    #Getting 10 random rows from Attributes
+    tenrand = '''select * from Attributes order by random() limit 10;'''
+    cur.execute(tenrand)
+    punks = list(cur.fetchall())
+    length = len(punks)
+
+    #Getting random id from table Attributes
+    randint = '''select id from Attributes order by random() limit 1;'''
+    cur.execute(randint)
+    randomNumber = cur.fetchone()[0]
     if not session.get('logged_in'):
         return render_template('login.html')
     else:
@@ -31,57 +120,69 @@ def home():
                 return redirect(url_for("punkpage", punkid=input_id))
             return redirect(url_for("querypage", gender=input_gender, types=input_type, skin=input_skin, access=input_access, count=input_count))
             
-        punks = data.values[:10]
         length = len(punks)
-        randomNumber = random.choice([id[0] for id in data.values])
         return render_template("index.html", content=punks, length=length, randomNumber = randomNumber)
 
 @app.route("/punks/<gender>/<types>/<skin>/<count>/<access>")
 def querypage(gender, types, skin, count, access):
-    if not session.get('logged_in'):
-        return render_template('login.html')
-    ct = data.copy()
+    cur = conn.cursor()
+    rest = 0
+
+    sqlcode = f'''select * from Attributes where '''
     if gender != "both":
-        ct = ct[ct["gender"] == gender]
+        sqlcode += f''' gender = '{gender}' and'''
+        rest += 1
 
     if types != "all":
-        ct = ct[ct["type"] == types]
+        sqlcode += f''' type = '{types}' and'''
+        rest += 1
 
     if skin != "all":
-        ct = ct[ct["skin_tone"] == skin]
+        sqlcode += f''' skin_tone = '{skin}' and'''
+        rest += 1
 
     if access != "NaN":
-        ct = ct[ct["accessories"].str.contains(access)]
-
-    print(ct)
+        rest += 1
+        sqlcode += f''' accessories ~* '{access}' and'''
+    
     if int(count) != -1:
-        ct = ct[ct["count"] == count]
+        rest += 1
+        sqlcode += f''' count = '{count}' and'''
 
-    ct = list(ct.values)[1:]
+    if rest == 0: 
+        sqlcode = f''' select * from Attributes'''
+
+    else: 
+        sqlcode  = sqlcode[:-3]
+
+    cur.execute(sqlcode)
+    ct = list(cur.fetchall())
+
+
     length = len(ct)
-    print(count)
-    print(length)
+
     return render_template("cryptoquery.html", content=ct, length=length)
 
 
 @app.route('/login', methods=['POST'])
 def do_admin_login():
-    if request.form['password'] == 'password' and request.form['username'] == 'admin':
+    cur = conn.cursor()
+    username = request.form['username']
+    password = request.form['password'] 
+
+    insys = f''' SELECT * from users where username = '{username}' and password = '{password}' '''
+
+    cur.execute(insys)
+
+    ifcool = len(cur.fetchall()) != 0
+
+    if ifcool:
         session['logged_in'] = True
+        session['username'] = username
     else:
         flash('wrong password!')
     return redirect(url_for("home"))
 
-@app.route("/createaccount", methods=['POST', 'GET'])
-def createaccount():
-    if request.method == 'POST':
-        ######GEM ACCOUNT###########
-        new_username = request.form['username']
-        new_password = request.form['password']
-        print("HEJ")
-        #######################
-        return redirect(url_for("home"))
-    return render_template("createaccount.html")
 
 @app.route("/contact")
 def contact():
@@ -94,19 +195,23 @@ def logout():
 
 @app.route("/profile")
 def profile():
+    cur = conn.cursor()
     if not session.get('logged_in'):
         return render_template('login.html')
     
-    favsid = ['0001', '1234', '8743', '8593']
-    favs = list(data[data['id'].isin(favsid)].values)
-    length = len(favsid)
-    print(favs)
-    return render_template("profile.html", content=favs, length=length)
+    username = session['username']
+
+    print(username)
+    sql1 = f'''select id, type, gender, skin_tone, count, accessories from favorites natural join attributes where username = '{username}' '''
+    cur.execute(sql1)
+    favs = cur.fetchall()
+    length = len(favs)
+    return render_template("profile.html", content=favs, length=length, username = username)
 
 
 @app.route("/punk/<punkid>", methods=["POST", "GET"])
 def punkpage(punkid):
-
+    cur = conn.cursor()
     """
     Instead of PunkID we would have our database content
     for 1 cryptopunk instead.
@@ -116,7 +221,16 @@ def punkpage(punkid):
 
     if request.method == "POST":
         # Add til favourite
-        print("ADDED TO FAVOURITE")
+        username = session['username']
+        print(username, punkid)
+        try: 
+            sql1 = f'''insert into favorites(id, username) values ('{punkid}', '{username}') '''
+            cur.execute(sql1)
+            conn.commit()
+            print("ADDED TO FAVOURITE")
+        except:
+            conn.rollback()
+
 
 
     req = "https://cryptopunks.app/cryptopunks/details/"+ punkid
@@ -128,9 +242,13 @@ def punkpage(punkid):
         price = "10Ξ ($18,000)"
     else:
         price =pricelist[4].replace('</td>', '').replace('<td>','')
-    print(punkid)
-    print(price)
-    ct = list(data[data.id == punkid].values)[0]
+
+    sql1 = f''' select * from attributes where id = '{punkid}' '''
+
+    cur.execute(sql1)
+
+    ct = cur.fetchone()
+
     return render_template("cryptopunk.html", content=ct, price=price)
 
 if __name__ == "__main__":
