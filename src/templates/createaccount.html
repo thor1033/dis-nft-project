@@ -7,21 +7,21 @@
 />
 {% block body %}
 
-<form action="/login" method="POST">
+<form action="/createaccount" method="POST">
 	<div class="login">
 		<div class="mainDIV">
 			<div class="leftDIV">
-				<img src="/static/images/2955.png" alt="Avatar" class="image" />
+				<img src="/static/images/2955.png" alt="Avatar" class="image">
 			</div>
-
+			
 			<div class="middleDIV"></div>
 			<div class="rightDIV">
-				<img src="/static/images/2140.png" alt="Avatar" class="image" />
+				<img src="/static/images/2140.png" alt="Avatar" class="image">
 			</div>
 		</div>
 		<div class="login-screen">
 			<div class="app-title">
-				<h1>Login</h1>
+				<h1>Create Account</h1>
 			</div>
 			<div class="login-form">
 				<div class="control-group">
@@ -46,20 +46,12 @@
 				</div>
 				<input
 					type="submit"
-					value="Log in"
+					value="Create"
 					class="btn btn-primary btn-large btn-block"
-					name="login"
 				/>
 			</div>
 		</div>
 	</div>
 </form>
-<a href="/createaccount">
-	<input
-		type="submit"
-		value="New Account"
-		class="btn btn-primary btn-large btn-block"
-		name="create"
-	/>
-</a>
 {% endblock %}
+

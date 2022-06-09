@@ -38,6 +38,8 @@ def home():
 
 @app.route("/punks/<gender>/<types>/<skin>/<count>/<access>")
 def querypage(gender, types, skin, count, access):
+    if not session.get('logged_in'):
+        return render_template('login.html')
     ct = data.copy()
     if gender != "both":
         ct = ct[ct["gender"] == gender]
@@ -70,10 +72,31 @@ def do_admin_login():
         flash('wrong password!')
     return redirect(url_for("home"))
 
+@app.route("/createaccount", methods=['POST', 'GET'])
+def createaccount():
+    if request.method == 'POST':
+        ######GEM ACCOUNT###########
+        print("HEJ")
+        #######################
+        return redirect(url_for("home"))
+    return render_template("createaccount.html")
+
 @app.route("/logout")
 def logout():
     session['logged_in'] = False
     return home()
+
+@app.route("/profile")
+def profile():
+    if not session.get('logged_in'):
+        return render_template('login.html')
+    
+    favsid = ['0001', '1234', '8743', '8593']
+    favs = list(data[data['id'].isin(favsid)].values)
+    length = len(favsid)
+    print(favs)
+    return render_template("profile.html", content=favs, length=length)
+
 
 @app.route("/punk/<punkid>", methods=["POST", "GET"])
 def punkpage(punkid):
@@ -82,6 +105,8 @@ def punkpage(punkid):
     Instead of PunkID we would have our database content
     for 1 cryptopunk instead.
     """
+    if not session.get('logged_in'):
+        return render_template('login.html')
 
     if request.method == "POST":
         # Add til favourite
@@ -92,7 +117,11 @@ def punkpage(punkid):
     response = requests.get(req)
     soup = BeautifulSoup(response.content, 'html.parser')
     rows = soup.select("table.ms-rteTable-default tr")
-    price = str(soup.find(class_="punk-history-row-bid")).split('\n')[4].replace('</td>', '').replace('<td>','')
+    pricelist = str(soup.find(class_="punk-history-row-bid")).split('\n')
+    if len(pricelist) < 5:
+        price = "10Ξ ($18,000)"
+    else:
+        price =pricelist[4].replace('</td>', '').replace('<td>','')
     print(punkid)
     print(price)
     ct = list(data[data.id == punkid].values)[0]
