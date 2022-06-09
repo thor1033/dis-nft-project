@@ -1,8 +1,5 @@
 {% extends "navbar.html" %} {% block content %}
-    <h1>Crypto Punk database!</h1>
-    <p>Find your favourite punk!</p>
-    <input type="text" id="form" placeholder="Attribute"\>
-    <input type="submit" id="button" value="Search">
+    <h1>Crypto Punk Query!</h1>
     <div class="cards">
       {%for i in range(0,length)%}
       <a href="/punk/{{content[i][0]}}">

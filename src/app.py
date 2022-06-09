@@ -21,6 +21,11 @@ def home():
             input_count = request.form["accessCount"] or -1
             input_access = request.form["access"] or "NaN"
 
+            input_id = request.form["punkid"] or ""
+            input_id = input_id.zfill(4)
+
+            if input_id != "":
+                return redirect(url_for("punkpage", punkid=input_id))
             return redirect(url_for("querypage", gender=input_gender, types=input_type, skin=input_skin, access=input_access, count=input_count))
             
         punks = data.values[:10]
