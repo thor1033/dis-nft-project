@@ -12,7 +12,7 @@ import random
 app = Flask(__name__ , static_url_path='/static')
 
 # set your own database name, user name and password
-db = "dbname='NFT' user='postgres' host='localhost' password='Kamal420'" #potentially wrong password
+db = "dbname='NFT' user='postgres' host='localhost' password='xxx'" #potentially wrong password
 conn = psycopg2.connect(db)
 cursor = conn.cursor()
 
