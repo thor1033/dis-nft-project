@@ -94,6 +94,26 @@ width: 100px;
   border: 4px solid #ea00d9;
   color: rgba(255,255,255,0.8);
 }
+#buttonAdd {
+  width: 250px;
+  height: 125px;
+  font-family: 'Press Start 2P', sans-serif;
+  padding: 11px;
+  font-size: 15px;
+  font-weight:bold;
+  margin: 5px;
+  outline:none;
+  background: linear-gradient(to left top, #000, #133e7c) fixed;
+  border: 6px solid #ea00d9;
+  color: rgba(255,255,255,0.8);
+}
+#buttonAdd:hover {
+  border: 4px solid #fcec0c;
+}
+
+#buttonAdd:focus {
+  border: 4px solid #fcec0c;
+}
 
 #button:hover {
   border: 4px solid #fcec0c;
@@ -110,6 +130,11 @@ p {
 h1 {
   font-size: 2.5em;
   color: #ea00d9;
+  text-align: center;
+}
+h2 {
+  font-size: 1.5em;
+  color: #fcec0c;
   text-align: center;
 }
 h4 {

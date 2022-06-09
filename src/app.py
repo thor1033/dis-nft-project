@@ -3,6 +3,9 @@ import os
 import pandas as pd
 import random
 
+import requests
+from bs4 import BeautifulSoup
+
 app = Flask(__name__ , static_url_path='/static')
 
 data = pd.read_csv("attributes.csv", dtype=str)
@@ -36,13 +39,13 @@ def home():
 @app.route("/punks/<gender>/<types>/<skin>/<count>/<access>")
 def querypage(gender, types, skin, count, access):
     ct = data.copy()
-    if gender != "Both":
+    if gender != "both":
         ct = ct[ct["gender"] == gender]
 
-    if types != "All":
+    if types != "all":
         ct = ct[ct["type"] == types]
 
-    if skin != "All":
+    if skin != "all":
         ct = ct[ct["skin tone"] == skin]
 
     if access != "NaN":
@@ -72,7 +75,7 @@ def logout():
     session['logged_in'] = False
     return home()
 
-@app.route("/punk/<punkid>")
+@app.route("/punk/<punkid>", methods=["POST", "GET"])
 def punkpage(punkid):
 
     """
@@ -80,9 +83,20 @@ def punkpage(punkid):
     for 1 cryptopunk instead.
     """
 
+    if request.method == "POST":
+        # Add til favourite
+        print("ADDED TO FAVOURITE")
+
+
+    req = "https://cryptopunks.app/cryptopunks/details/"+ punkid
+    response = requests.get(req)
+    soup = BeautifulSoup(response.content, 'html.parser')
+    rows = soup.select("table.ms-rteTable-default tr")
+    price = str(soup.find(class_="punk-history-row-bid")).split('\n')[4].replace('</td>', '').replace('<td>','')
     print(punkid)
+    print(price)
     ct = list(data[data.id == punkid].values)[0]
-    return render_template("cryptopunk.html", content=ct)
+    return render_template("cryptopunk.html", content=ct, price=price)
 
 if __name__ == "__main__":
     app.secret_key = os.urandom(12)
