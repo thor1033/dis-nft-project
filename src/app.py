@@ -14,17 +14,17 @@ def home():
         return render_template('login.html')
     else:
         if request.method == "POST":
-            input_gender = request.form["radio"]
-            input_type = request.form["radiotype"]
-            input_skin = request.form["radioskin"]
+            input_gender = request.form["radio"].lower()
+            input_type = request.form["radiotype"].lower()
+            input_skin = request.form["radioskin"].lower()
 
             input_count = request.form["accessCount"] or -1
-            input_access = request.form["access"] or "NaN"
+            input_access = request.form["access"].lower() or "NaN"
 
-            input_id = request.form["punkid"] or ""
-            input_id = input_id.zfill(4)
+            input_id = request.form["punkid"].lower() or ""
 
             if input_id != "":
+                input_id = input_id.zfill(4)
                 return redirect(url_for("punkpage", punkid=input_id))
             return redirect(url_for("querypage", gender=input_gender, types=input_type, skin=input_skin, access=input_access, count=input_count))
             
