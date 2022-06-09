@@ -76,6 +76,8 @@ def do_admin_login():
 def createaccount():
     if request.method == 'POST':
         ######GEM ACCOUNT###########
+        new_username = request.form['username']
+        new_password = request.form['password']
         print("HEJ")
         #######################
         return redirect(url_for("home"))
