@@ -24,7 +24,7 @@ IMPORTANT: In the 'Create Attributes.SQL' change the directory to the full path 
 
 (3) Frontpage / On the frontpage you will see 10 random NFT's (cryptopunks) and some different filter options.
 
-(4) Punks / Each punk have their own side where you can see 'attributes', price and you have the option to add the punk to your favourites.
+(4) Punks / Each punk have their own page where you can see 'attributes', price and you have the option to add the punk to your favourites.
 
 (5) Searching / You can get to a random punk by pushing the 'random' button, you will also have the option to type in the 'punk ID'.
 		On the frontpage the searching is made easy by types you can choose. It can e.g. be a 'male', 'human', 'medium' skin color, 
