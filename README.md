@@ -1,3 +1,6 @@
+# NFT database - Track your favourite punk!
+![](tmp/nftpic.PNG)
+
 # running dis-nft-project:
 
 Assumes a working Python 3 installation (with python=python3 and pip=pip3).

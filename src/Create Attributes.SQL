@@ -8,6 +8,6 @@ accessories char(10000),
 CONSTRAINT nft_pk PRIMARY KEY (id));
 
 copy  Attributes(id,type,gender, skin_tone, count, accessories)
-            from 'ABSOLUTE_PATH_OF_CSV_FILE\attributes.csv'
+            from 'C:\PATH\TO\PROJECT\dis-nft-project\tmp\attributes.csv'
             delimiter ','
             CSV HEADER;
