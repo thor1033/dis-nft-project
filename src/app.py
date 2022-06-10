@@ -11,70 +11,24 @@ import random
 
 app = Flask(__name__ , static_url_path='/static')
 
-# set your own database name, user name and password
-db = "dbname='NFT' user='postgres' host='localhost' password='xxx'" #potentially wrong password
+# set your own database name, username and password
+db = "dbname='NFT' user='postgres' host='localhost' password='Kamal420'" #potentially wrong password
 conn = psycopg2.connect(db)
 cursor = conn.cursor()
 
-sql1 = ''' drop table if exists Attributes;\
-CREATE TABLE Attributes(id char(4),\
-type char(20),\
-gender char(20),\
-skin_tone char(30),\
-count int,\
-accessories char(10000),\
-CONSTRAINT nft_pk PRIMARY KEY (id));'''
-  
-
-sql2 = '''copy  Attributes(id,type,gender, skin_tone, count, accessories)\
-            from 'C:\\Users\Gamer\\OneDrive\\Skrivebord\\Databases and informationsystems\\dis-nft-project\\attributes.csv'\
-            delimiter ','\
-            CSV HEADER;'''
-
-sql3 = '''select * from Attributes;'''
-
-cursor.execute(sql1)
-cursor.execute(sql2)
-cursor.execute(sql3)
-
-### Create user enity
-
-sql1 = ''' drop table if exists users;\
-CREATE TABLE users( username char(20) NOT NULL,\
-    password char(20) NOT NULL,\
-    CONSTRAINT user_pk PRIMARY KEY (username));''' 
-
-cursor.execute(sql1)
-cursor.execute('''INSERT INTO users(username, password) VALUES ('admin', 'password')''')
-
-sqlfav = '''drop table if exists favorites;\
-create table favorites(id char(4), username char(20), constraint nuser primary key(id, username))'''
-
-cursor.execute(sqlfav)
-
-
-conn.commit()
 
 bcrypt = Bcrypt(app)
-
-#data = pd.read_csv("attributes.csv", dtype=str)
-
 
 @app.route("/createaccount", methods=['POST', 'GET'])
 def createaccount():
     cur = conn.cursor()
     if request.method == 'POST':
-        ######GEM ACCOUNT###########
         new_username = request.form['username']
         new_password = request.form['password']
-        print(new_username)
         cur.execute(f'''select * from users where username = '{new_username}' ''')
         unique = cur.fetchall()
-
-        #cur.execute(f'''INSERT INTO users(username, password) VALUES ('{new_username}', '{new_password}')''')
         flash('Account created!')
         if  len(unique) == 0:
-            print("vi er her")
             cur.execute(f'''INSERT INTO users(username, password) VALUES ('{new_username}', '{new_password}')''')
             flash('Account created!')
             conn.commit()
@@ -201,7 +155,6 @@ def profile():
     
     username = session['username']
 
-    print(username)
     sql1 = f'''select id, type, gender, skin_tone, count, accessories from favorites natural join attributes where username = '{username}' '''
     cur.execute(sql1)
     favs = cur.fetchall()
@@ -222,12 +175,10 @@ def punkpage(punkid):
     if request.method == "POST":
         # Add til favourite
         username = session['username']
-        print(username, punkid)
         try: 
             sql1 = f'''insert into favorites(id, username) values ('{punkid}', '{username}') '''
             cur.execute(sql1)
             conn.commit()
-            print("ADDED TO FAVOURITE")
         except:
             conn.rollback()
 
