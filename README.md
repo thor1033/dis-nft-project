@@ -5,7 +5,7 @@ Assumes a working Python 3 installation (with python=python3 and pip=pip3).
 (1) Run the code below to install the dependencies.
 >$ pip install -r requirements.txt
 
-(2) Initialise the database, by running the SQL files (Creating the necessary tables) 
+(2) Initialize the database, by running the SQL files (Creating the necessary tables) 
 IMPORTANT: In the 'Create Attributes.SQL' change the directory to the full path of the 'attributes.csv' file. 
 
 (3) In the app.py-file, set your own database username and password
