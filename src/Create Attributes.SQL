@@ -1,5 +1,4 @@
-drop table if exists Attributes;
-CREATE TABLE Attributes(id char(4),
+CREATE TABLE IF NOT EXISTS Attributes(id char(4),
 type char(20),
 gender char(20),
 skin_tone char(30),
